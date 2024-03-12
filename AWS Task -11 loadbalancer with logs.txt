@@ -1,0 +1,26 @@
+step1: create load balancer consist of TG with ec2 instance.
+ 
+step 2: select load balancer and go to attributes.
+           -in attributes and edit.
+           -scroll down it and Access Logs.
+            
+step 3: first create the s3 bucket for storing the logs.
+-browse it in access logs
+
+Access Denied so for refer the document of "  Enable access logs for your Application Load Balancer "
+-copy that policy and paste it in s3 bucket permission and attached it in policy.
+-edit resources and paste Bucket ARN also change prefix 
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::156460612806:root"
+      },
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::logof/test-logs/AWSLogs/905418127814/*"
+    }
+  ]
+}

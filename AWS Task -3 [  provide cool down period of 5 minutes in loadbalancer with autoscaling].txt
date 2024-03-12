@@ -1,0 +1,26 @@
+                                             Autoscalling with Loadbalancer with Cool Down Period of 5 Minutes.
+                                           ------------------------------------------------------------------------------------------------------
+
+
+step1: Create Launch Templates
+          - select OS.
+          - add User data
+            #!/bin/bash
+            sudo yum update httpd -y
+            sudo yum install httpd -y
+            sudo yum enable httpd -y
+             echo "$(hostname)" > /var/www/html/index.html
+             sudo systemctl start httpd 
+
+step2: Create Auto-Scaling 
+          -select the template.
+          -select min limit and max limit.
+          -create Load-balancer and create TG.
+
+step3: For adding Cool Down Period of 5 Minutes it only work in automatic auto scalling ex: dynamic scalling.
+if traffic is more than 40% then server create automatically created
+            - Go Auto-Scalling select it and go to action and edit.
+            - set cool down period > cool down period define the waiting period of instance after adding and removing.
+
+
+ 

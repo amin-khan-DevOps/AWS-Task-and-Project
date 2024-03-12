@@ -1,0 +1,44 @@
+		----Blue Green Deployment----
+
+Step.1 -> first we will launch two instance with different name like blue and green. 
+	and we will connect using ec2-instance and use this command
+for Blue-instance:(this is our live environment which run on old version)
+	1. sudo -i (for root user access)
+	2. yum install nginx -y (for web serevr)
+	3. echo "<html><body bgcolor="#0000ff"><h1 style="color:red;">This is my blue environment</h1></body></html> > /usr/share/nginx/html/index.html 
+	4. systemctl restart nginx
+for Green-instance:(this is our green environment which run on new or update version of our web application)
+	1. sudo -i (for root user access)
+	2. yum install nginx -y (for web serevr)
+	3. echo "<html><body bgcolor="#008000"><h1 style="color:orange;">This is my Green environment</h1></body></html> > /usr/share/nginx/html/index.html 
+	4. systemctl restart nginx
+
+Step.2 craete Two target group
+	1. blue-tg: blue-instance will register on this tg.
+	2. green-tg: green-instance will register on this tg. 
+
+Step.3 Create an application load balancer
+	first we will add blue-tg on load balancer. and now 100% traffic will come on blue-tg and load balancer distribute this traffic to its registered instance.
+	now we will add green-tg which is updated and deploy it with load balancer listener where i have already a listener on this load balancer 
+	go to listener and rules and click on listener port and then go to action and click on edit listener rule
+	scroll down and here is already blue-tg now click on add target group -> add green tg with 20% weight and blue-tg with 80% weight.
+	and click on the save changes.
+	
+	now hit the load balancer. and now we will see the blue environment with till 8 time reload and after we will see green enviroment because the traffic is distributed between 80% blue-tg and 20% green tg.
+	if our green environment working good and have no other issue on this enviromnet we will swicth the all traffic with this green enviromnet.
+
+Documentation:
+
+1. Start by setting up your blue environment, which represents your current live environment.
+
+2. Once your blue environment is up and running, create a green environment that represents your new version or changes.
+
+3. Deploy your new version or changes to the green environment, ensuring that it is tested and validated thoroughly.
+
+4. Once you are satisfied with the green environment and it is working as expected, you can switch the traffic from the blue environment to the green environment.
+
+5. Monitor the green environment closely to ensure that everything is running smoothly and there are no issues.
+
+6. If any issues arise, you can quickly switch the traffic back to the blue environment to minimize any impact on your users.
+
+7. Once you are confident that the green environment is stable and performing well, you can decommission the blue environment. 

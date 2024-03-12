@@ -1,0 +1,10 @@
+Step1: create s3 bucket which is private and consist of image in index.html
+
+Stesp2: In Cloudfront create distribution and select s3 bucket in origin domain. select origin access.
+         
+            -do not enable security protection and create distribution.
+             - Copy That policy.
+
+Step 3: paste that policy in s3 bucket permission.
+
+Hit that .net DNS of Cloudfront

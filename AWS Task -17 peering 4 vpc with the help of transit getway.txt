@@ -1,0 +1,36 @@
+step1: Create a Transit Gateway:
+
+In the AWS Management Console, navigate to the VPC Dashboard.
+Click on "Transit Gateways" in the left-hand menu.
+Click on "Create Transit Gateway" and follow the wizard to set up the transit gateway.
+
+step2 : Attach VPCs to Transit Gateway:
+
+For each VPC you want to peer, navigate to its VPC Dashboard.
+In the "Transit Gateway Attachments" section, click on "Create Transit Gateway Attachment."
+Follow the wizard to attach the VPC to the transit gateway.
+
+step3 :Repeat Step 2 for Each VPC:
+
+Do this for all four VPCs you want to peer with the transit gateway.
+
+step4 :Create Transit Gateway Peering Attachments:
+
+In the Transit Gateway dashboard, click on "Transit Gateway Peering Attachments."
+Click on "Create Transit Gateway Peering Attachment" and follow the wizard to establish peering connections between the transit gateways.
+
+step5 :Accept Peering Requests:
+
+After creating the peering attachments, you need to accept the peering requests. In the Transit Gateway Peering Attachments section, you will see the pending peering requests. Accept them to establish the peering connection.
+step6 :Update Route Tables:
+
+Update the route tables in each VPC to include the necessary routes for the other VPCs. This typically involves adding the CIDR blocks of the peered VPCs and associating them with the transit gateway as the target.
+step7 :Security Groups and Network ACLs:
+
+Ensure that security groups and network ACLs allow the necessary traffic between the peered VPCs.
+step8 :Testing Connectivity:
+
+Once the configuration is complete, test connectivity between instances in different VPCs to ensure that the transit gateway peering is working as expected.
+step 9 :Monitoring and Maintenance:
+
+Regularly monitor the transit gateway and associated resources for any issues. Be aware of any updates or changes to the transit gateway service that may affect your configuration.

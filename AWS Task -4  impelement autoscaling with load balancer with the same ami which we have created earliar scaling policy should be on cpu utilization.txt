@@ -1,0 +1,15 @@
+step1 : first create ec2 instance.
+-you can choose Amazon Linux OS.
+        connect with ssh
+step2 :follow this commands over their:
+         -sudo su
+         -yum update -y
+         -yum install nginx -y ( sudo amazon-linux-extras install nginx1)
+          -sudo  service nginx start
+          -systemctl status nginx.service
+
+step3: select instance and go action select their image and template
+
+step4: create template with modify AMI
+
+step5: In Application LoadBalancer select modify AMI

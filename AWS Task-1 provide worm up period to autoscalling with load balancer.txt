@@ -1,0 +1,18 @@
+step1: Create Launch Templates
+          - select OS.
+          - add User data
+            #!/bin/bash
+            sudo yum update httpd -y
+            sudo yum install httpd -y
+            sudo yum enable httpd -y
+             echo "$(hostname)" > /var/www/html/index.html
+             sudo systemctl start httpd 
+
+step2: Create Auto-Scaling 
+          -select the template.
+          -select min limit and max limit.
+          -create Load-balancer and create TG.
+
+step3: For adding worm up Period of 2 Minutes.
+          - During an instance refresh, Amazon EC2 Auto Scaling also waits for the warm-up period after it replaces an instance.
+ After that, it moves on to replacing the next instance.
